@@ -37,9 +37,9 @@ public class CompanyServerAppl {
         	inputStr = reader.readLine();
         	if(inputStr.compareTo("Shutdown")!=0) inputStr=null;
         }
-
-	     
-	    tcpServer.makeExc();
+     
+        ((Persistable) company).save(FILE_NAME);
+        tcpServer.shutdown();
 	     
 		// TODO
 		// cycle with asking a user to enter shutdown for exit from the server

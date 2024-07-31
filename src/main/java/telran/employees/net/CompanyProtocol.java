@@ -26,6 +26,7 @@ public class CompanyProtocol implements Protocol {
 		try {
 			response = switch(requestType) {
 			case "addEmployee" -> addEmployee(requestData);
+			
 			case "getEmployee" -> getEmployee(requestData);
 			case "removeEmployee" -> removeEmployee(requestData);
 			case "getDepartmentBudget" -> getDepartmentBudget(requestData);
