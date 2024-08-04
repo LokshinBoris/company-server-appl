@@ -1,1 +1,3 @@
 {"basicSalary":8000,"className":"telran.employees.Manager","id":1000,"department":"QA","factor":1.6}
+{"basicSalary":9000,"className":"telran.employees.Manager","id":1001,"department":"Audit","factor":1.9}
+{"basicSalary":7000,"className":"telran.employees.Manager","id":1002,"department":"Development","factor":1.6}

@@ -3,6 +3,8 @@ package telran.employees.net;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import telran.employees.Company;
 import telran.employees.CompanyMapsImpl;
@@ -38,6 +40,17 @@ public class CompanyServerAppl {
         	if(inputStr.compareTo("Shutdown")!=0) inputStr=null;
         }
      
+        ExecutorService executor=tcpServer.getExecutor();
+		executor.shutdown();
+		try 
+		{
+			executor.awaitTermination(1, TimeUnit.HOURS);
+		}
+		catch (InterruptedException e) 
+		{
+			//no interrupts
+		}
+		
         ((Persistable) company).save(FILE_NAME);
         tcpServer.shutdown();
 	     
