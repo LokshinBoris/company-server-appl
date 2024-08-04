@@ -39,20 +39,11 @@ public class CompanyServerAppl {
         	inputStr = reader.readLine();
         	if(inputStr.compareTo("Shutdown")!=0) inputStr=null;
         }
-     
-        ExecutorService executor=tcpServer.getExecutor();
-		executor.shutdown();
-		try 
-		{
-			executor.awaitTermination(1, TimeUnit.HOURS);
-		}
-		catch (InterruptedException e) 
-		{
-			//no interrupts
-		}
-		
+        
+       
+		tcpServer.shutdown();
         ((Persistable) company).save(FILE_NAME);
-        tcpServer.shutdown();
+        
 	     
 		// TODO
 		// cycle with asking a user to enter shutdown for exit from the server
