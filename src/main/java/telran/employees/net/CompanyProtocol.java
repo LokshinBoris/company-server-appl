@@ -16,15 +16,17 @@ public class CompanyProtocol implements Protocol {
 	
 	public CompanyProtocol(Company company) {
 		this.company = company;
+		
 	}
 
 	@Override
-	public Response getResponse(Request request) {
+	public synchronized Response getResponse(Request request) {
 		String requestType = request.requestType();
 		String requestData = request.requestData();
 		Response response = null;
-		try {
-			response = switch(requestType) {
+		try  {		
+			response = switch(requestType) 
+			{
 			case "addEmployee" -> addEmployee(requestData);
 			
 			case "getEmployee" -> getEmployee(requestData);
@@ -32,9 +34,9 @@ public class CompanyProtocol implements Protocol {
 			case "getDepartmentBudget" -> getDepartmentBudget(requestData);
 			case "getDepartments" -> getDepartments(requestData);
 			case "getManagersWithMostFactor" -> getManagersWithMostFactor(requestData);
-			default -> wrongTypeResponse(requestType);
+			default -> wrongTypeResponse(requestType); 
 			};
-			
+		
 		} catch (Exception e) {
 			response = wrongDataResponse(e.getMessage());
 		}
